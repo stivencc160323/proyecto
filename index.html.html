@@ -1,25 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Energía Eólica</title>
 
-  <!-- Bootstrap y fuentes locales -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/poppins.css" rel="stylesheet">
-  <link href="css/open-sans.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
   <style>
+    :root {
+      --font-main: 'Open Sans', sans-serif;
+      --font-title: 'Poppins', sans-serif;
+    }
+
     body {
       margin: 0;
-      font-family: 'Open Sans', sans-serif;
+      font-family: var(--font-main);
       background-color: #f8f9fa;
     }
 
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font-title);
+    }
+
+    section {
+      padding: 60px 20px;
+    }
+
+    /* Parallax */
+    .parallax {
+      position: relative;
+      height: 100vh;
+      background-image: url('parque_eolico.jpg');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 60px 30px;
+      border-radius: 15px;
+      max-width: 800px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(3px);
+      text-align: center;
+    }
+
+    section:not(#inicio-parallax) {
+      padding-top: 100px;
+    }
+
+    @media (max-width: 768px) {
+      .parallax {
+        background-attachment: scroll;
+      }
     }
 
     #menu-container {
@@ -45,10 +90,10 @@
     .menu-item {
       color: rgb(0, 0, 0);
       padding: 10px 20px;
-      font-family: 'Poppins', sans-serif;
+      font-family: var(--font-title);
       font-size: 20px;
       cursor: pointer;
-      transition: background-color 0.5s;
+      transition: background-color 0.5s, cursor 0.5s;
       text-decoration: none;
     }
 
@@ -61,52 +106,17 @@
       width: 40px;
       height: 40px;
     }
-
-    section {
-      padding: 100px 20px;
-    }
-
-    .parallax {
-      position: relative;
-      height: 100vh;
-      background-image: url('parque_eolico.jpg');
-      background-attachment: fixed;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .overlay {
-      background-color: rgba(255, 255, 255, 0.7);
-      padding: 60px 30px;
-      border-radius: 15px;
-      max-width: 800px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(3px);
-      text-align: center;
-    }
-
-    section:not(#inicio-parallax) {
-      padding-top: 500px;
-    }
-
-    @media (max-width: 768px) {
-      .parallax {
-        background-attachment: scroll;
-      }
-    }
   </style>
 </head>
 
 <body>
 
+  <!-- Menú -->
   <nav id="menu-container">
     <ul id="menu-list" class="nav justify-content-center">
       <li class="nav-item">
-        <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
           <path d="M12 12c2.76 0 5 -2.01 5 -4.5s-2.24 -4.5 -5 -4.5v9z" />
           <path d="M12 12c0 2.76 2.01 5 4.5 5s4.5 -2.24 4.5 -5h-9z" />
@@ -119,10 +129,12 @@
       <li class="nav-item"><a class="menu-item" href="#tipos">Tipos</a></li>
       <li class="nav-item"><a class="menu-item" href="#economia">Economía</a></li>
       <li class="nav-item"><a class="menu-item" href="#colombia">En Colombia</a></li>
+      <li class="nav-item"><a class="menu-item" href="#actualidad">Actualidad</a></li>
       <li class="nav-item"><a class="menu-item" href="#calculadora">Calculadora Consumo</a></li>
     </ul>
   </nav>
 
+  <!-- Parallax -->
   <section id="inicio-parallax" class="parallax">
     <div class="overlay text-center">
       <h1 class="display-4">Energía Eólica</h1>
@@ -130,46 +142,318 @@
     </div>
   </section>
 
-  <section id="parques">
-    <div class="container">
-      <h2>Parques Eólicos</h2>
-      <p>Información sobre los parques eólicos...</p>
+  <!-- Contenido -->
+  <section id="parques" class="py-5">
+    <div class="container bg-light rounded shadow-sm p-4">
+      <h2 class="text-center mb-4">Parques Eólicos</h2>
+
+      <p class="mb-4"><strong>¿Qué es?</strong><br>
+        Un parque eólico o campo eólico es una extensión de varios kilómetros cuadrados en la cual se alberga un
+        conjunto de turbinas eólicas para aprovechar los vientos en mar y tierra y generar electricidad.
+      </p>
+
+      <p class="mb-4">
+        El funcionamiento de estas turbinas eólicas se basa en un principio muy básico: sacar el máximo potencial de la
+        fuerza del viento. Esta actúa como fuente de energía primaria, que al hacer girar las aspas genera energía
+        cinética que un generador transforma en energía eléctrica.
+      </p>
+
+      <p class="mb-4">
+        La cantidad de energía generada depende de varios factores como el tamaño de las turbinas, la localización y la
+        longitud de sus palas. Gracias a la investigación, la capacidad de los aerogeneradores ha aumentado
+        significativamente. En 1985, el modelo más común tenía 0,05 MW y un rotor de 15 metros. Hoy, algunas turbinas
+        superan los 5 MW.
+      </p>
+
+      <p class="mb-4"><strong>¿Cómo es el funcionamiento de un parque eólico?</strong><br>
+        Un aerogenerador está compuesto por una torre, una góndola y un rotor con palas orientadas al viento. Las
+        hélices giran y mueven un generador eléctrico que produce energía. Esta se transporta a través de cables
+        subterráneos a un transformador, que la redistribuye para alimentar la red eléctrica y abastecer hogares y
+        empresas.
+      </p>
+
+      <p class="mb-0"><strong>¿Cómo es el proceso de selección del lugar de instalación?</strong><br>
+        Los parques eólicos se instalan en lugares donde los vientos terrestres o marinos pueden ser aprovechados sin
+        causar un impacto negativo en el entorno o el hábitat natural. Al seleccionar el emplazamiento, se consideran
+        los siguientes factores:
+      </p>
+      <ul class="mt-2 mb-0">
+        <li>El posible impacto en el medio ambiente.</li>
+        <li>La intensidad y frecuencia de los vientos.</li>
+        <li>La orografía y accesibilidad del terreno.</li>
+        <li>La viabilidad legal y territorial del proyecto.</li>
+      </ul>
     </div>
   </section>
 
   <section id="funcionamiento">
-    <div class="container">
-      <h2>Funcionamiento</h2>
-      <p>Explicación del funcionamiento de los aerogeneradores...</p>
-    </div>
+    <div class="container bg-light rounded shadow-sm p-4">
+      <h2 class="text-center mb-4">Funcionamiento</h2>
+      <div class="row">
+        <!-- Columna 1: Aerogeneradores -->
+        <div class="col-md-6">
+          <h4>Funcionamiento del Transformador (Central Eólica)</h4>
+          <p>
+            Una vez el generador transforma la energía cinética que recibe en electricidad, se utiliza un transformador
+            para
+            elevar la tensión (de 20 KV – 66 KV) y poder transportar la corriente por el parque eólico. De este modo, la
+            energía
+            se transmite mediante cables de media tensión hasta la subestación.
+          </p>
+          <p>
+            Una vez allí, se convierte en corriente de alto voltaje (por encima de los 132 KV). A continuación, se
+            coloca una línea
+            de evacuación que transfiere la electricidad hasta las instalaciones conectadas a la red de distribución.
+            Esta última
+            será la encargada de transportar la electricidad hasta las empresas y los hogares.
+          </p>
+        </div>
+        <!-- Columna 2: Transformador -->
+        <div class="col-md-6">
+          <h4>Funcionamiento de los Aerogeneradores</h4>
+          <p>
+            El funcionamiento de un aerogenerador depende de un mecanismo muy sencillo. El rotor, activado por el
+            viento,
+            transmite su movimiento a un eje de alta velocidad. Este multiplicador transforma el lento desplazamiento de
+            las palas (entre 18 y 25 revoluciones por minuto) en una rotación más rápida (de hasta 1.800 revoluciones
+            por
+            minuto) capaz de hacer funcionar el generador eléctrico. Este último será el encargado de transformar la
+            energía
+            mecánica recibida en energía eléctrica.
+          </p>
+          <p>
+            Los aerogeneradores se clasifican generalmente de acuerdo con la dirección del eje:
+          <ul>
+            <li><strong>Aerogeneradores de eje vertical (VAWT):</strong> sus palas giran en torno a un eje central
+              vertical.</li>
+            <li><strong>Aerogeneradores de eje horizontal (HAWT):</strong> las palas giran en dirección perpendicular a
+              la velocidad del viento.</li>
+          </ul>
+          </p>
+        </div>
+
+      </div>
   </section>
 
   <section id="tipos">
-    <div class="container">
-      <h2>Tipos</h2>
-      <p>Diferentes tipos de aerogeneradores y tecnologías...</p>
-    </div>
+    <div class="container bg-light rounded shadow-sm p-4">
+      <h2 class="text-center mb-4">Tipos de Parques Eólicos y sus Ventajas</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Parques Eólicos On-shore</h5>
+          <p>
+            Son los más comunes en la actualidad. Se sitúan en tierra a no menos de 3 kilómetros de la costa y se
+            alimentan de las corrientes de aire terrestre.
+            La ventaja que ofrece este emplazamiento es su fácil accesibilidad y la cercanía a la red eléctrica.
+          </p>
+
+          <h5>Parques Eólicos Off-shore</h5>
+          <p>
+            Estas estructuras se construyen en mar abierto a varias millas de la costa. Entre sus principales beneficios
+            frente a las instalaciones terrestres está que la fuerza del viento es superior, a menor altura y más
+            regular que en tierra firme.
+          </p>
+
+          <h5>Características Costa Afuera</h5>
+          <p>
+            En el mar cerca de la costa, hay suficiente espacio para erigir un gran número de turbinas eólicas para
+            generar energía eléctrica.
+            Dado que también hay más viento en el mar, se produce alrededor de un 50% más que en el territorio
+            continental.
+            La transmisión de energía eléctrica a la red terrestre puede presentar dificultades, pero utilizando
+            tecnología moderna como la transmisión de corriente continua de alto voltaje (CCAV) mediante cables
+            submarinos, las pérdidas por transmisión son mínimas.
+          </p>
+        </div>
+
+        <div class="col-md-6">
+          <h5>Características Costa Adentro</h5>
+          <p>
+            También conocidos como parques eólicos marinos o offshore, se caracterizan por instalarse en el mar, a
+            cierta distancia de la costa.
+            Aprovechan la mayor velocidad y constancia del viento en el mar para generar energía de manera más
+            eficiente.
+            Además, minimizan el impacto visual y acústico y permiten grandes extensiones de instalación.
+          </p>
+
+          <h5>Diferencias entre Costa Afuera y Costa Adentro</h5>
+          <ul>
+            <li><strong>Costos:</strong> Los parques onshore son más económicos de implementar, mientras que los
+              offshore requieren estructuras marítimas costosas pero permiten aerogeneradores más grandes.</li>
+            <li><strong>Capacidad instalada:</strong> Los offshore tienen mayor capacidad gracias a los vientos
+              constantes y fuertes del mar.</li>
+            <li><strong>Riesgos:</strong> Los parques offshore enfrentan mayores riesgos climáticos y de corrosión, y la
+              conexión a la red implica cables submarinos complejos.</li>
+          </ul>
+        </div>
+      </div>
   </section>
 
-  <section id="economia">
-    <div class="container">
-      <h2>Economía</h2>
-      <p>No solo el campo eléctrico es beneficiado por las energías renovables.</p>
+  <section id="economia"
+    style="background-image: url('plasa_mercado.jpg  '); background-size: cover; background-attachment: fixed; background-position: center; padding: 100px 20px;">
+    <div class="container bg-light bg-opacity-75 rounded p-5 shadow-lg">
+      <h2 class="text-center mb-4">Sectores Económicos Beneficiados por los Parques Eólicos</h2>
+      <p class="text-center">No solo el sector energético es beneficiado por el desarrollo de los parques eólicos, sino
+        también una variedad de sectores económicos.</p>
+
+      <div class="accordion accordion-flush mt-4" id="accordionEconomia">
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button fs-5 fw-bold" type="button" data-bs-toggle="collapse"
+              data-bs-target="#sector1" aria-expanded="true">
+              Sector Metalmecánico
+            </button>
+          </h2>
+          <div id="sector1" class="accordion-collapse collapse show" data-bs-parent="#accordionEconomia">
+            <div class="accordion-body">
+              La construcción de aerogeneradores requiere componentes metálicos como torres, palas y estructuras de
+              soporte. Esto genera una demanda significativa en la industria metalmecánica, especialmente para empresas
+              dedicadas a la fabricación de acero y metales.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse"
+              data-bs-target="#sector2" aria-expanded="false">
+              Transporte Marítimo y Terrestre
+            </button>
+          </h2>
+          <div id="sector2" class="accordion-collapse collapse" data-bs-parent="#accordionEconomia">
+            <div class="accordion-body">
+              El transporte de componentes de aerogeneradores, especialmente en proyectos offshore, involucra una
+              logística compleja que beneficia tanto al sector marítimo como al terrestre. Puertos y empresas de
+              transporte se ven directamente involucrados.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse"
+              data-bs-target="#sector3" aria-expanded="false">
+              Ingeniería y Construcción
+            </button>
+          </h2>
+          <div id="sector3" class="accordion-collapse collapse" data-bs-parent="#accordionEconomia">
+            <div class="accordion-body">
+              El desarrollo de parques eólicos involucra ingenieros civiles, eléctricos y mecánicos, así como empresas
+              constructoras especializadas. Esto genera empleos y dinamiza la industria de infraestructura energética.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse"
+              data-bs-target="#sector4" aria-expanded="false">
+              Servicios de Mantenimiento y Operación
+            </button>
+          </h2>
+          <div id="sector4" class="accordion-collapse collapse" data-bs-parent="#accordionEconomia">
+            <div class="accordion-body">
+              Una vez en operación, los parques eólicos requieren servicios de mantenimiento y operación para asegurar
+              su correcto funcionamiento. Esto genera empleo local y oportunidades para empresas especializadas.
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="colombia">
-    <div class="container">
-      <h2>En Colombia</h2>
-      <p>Situación actual de la energía eólica en Colombia...</p>
+    <div class="container bg-light rounded shadow-sm p-4">
+      <h2 class="text-center mb-4">En Colombia</h2>
+      <p>
+        Colombia cuenta con un alto potencial en fuentes de energía renovable como la solar y la eólica, respaldado por
+        recientes actualizaciones normativas que han establecido un marco sólido de incentivos para promover su
+        desarrollo. No obstante, hasta 2022, la participación de estas fuentes en la matriz de capacidad eléctrica del
+        país era limitada, representando apenas alrededor del 1,5%.
+      </p>
+      <p>
+        Se proyecta que en los próximos cinco años esta situación cambie significativamente: si toda la capacidad ya
+        aprobada entra en operación, la participación de la energía solar y eólica podría aumentar hasta alcanzar cerca
+        del 40% para 2027. En este contexto nacional, ciudades como Valledupar, la capital del departamento del Cesar,
+        comienzan a explorar su potencial en energías renovables. Aunque el desarrollo de proyectos eólicos aún se
+        encuentra en fases iniciales, estudios han identificado zonas con viento suficiente para generación a pequeña y
+        mediana escala, donde se presentan datos de que puede llegar a tener velocidades de vientos de hasta 6 m/s.
+      </p>
+      <p>
+        Según el Plan Energético Nacional, en los próximos 30 años la demanda de energía eléctrica y gas natural
+        superaría la de los combustibles líquidos. Actualmente, un 48 % de los energéticos que consume el país son
+        combustibles líquidos, mientras que el gas natural y la energía eléctrica representan un 30 %. Según las
+        proyecciones, en el año 2050 se invertiría esta participación: la demanda de gas y energía eléctrica sería de un
+        46 %, mientras que la de combustibles líquidos sería de un 36 %.
+      </p>
+    </div>
+  </section>
+  <section id="actualidad">
+    <div class="container bg-light rounded shadow-sm p-4">
+      <h2 class="text-center mb-4">Actualidad</h2>
+
+      <h4>Parque Eólico Trupillo – La Guajira</h4>
+      <p>
+        Ubicado en la Alta Guajira, exactamente en el municipio de Uribia, se localiza el nuevo proyecto de energía
+        renovable que la Autoridad Nacional de Licencias Ambientales (ANLA) ha viabilizado mediante el otorgamiento de
+        la licencia ambiental al parque eólico Trupillo con una generación de 100 MW.
+      </p>
+
+      <p>
+        Este proyecto había sido radicado previamente ante la Autoridad en el año 2022; sin embargo, fue retirado por el
+        solicitante en febrero de 2023 debido a deficiencias en el Estudio de Impacto Ambiental (EIA) que podrían haber
+        comprometido su viabilidad ambiental. Posteriormente, en junio de 2023, fue presentado nuevamente y, tras la
+        visita de evaluación y la solicitud de información adicional, EÓLICA LA VELA S.A.S. entregó el estudio que
+        permitió a la ANLA, en un plazo de seis meses, dar viabilidad ambiental al desarrollo del parque eólico.
+      </p>
+
+      <p>
+        Todo esto se logró gracias a jornadas de fortalecimiento en licenciamiento ambiental organizadas por la ANLA con
+        gremios y actores asociados. El proyecto contempla la instalación y operación de 26 aerogeneradores con una
+        potencia de 3 a 5 MW cada uno, una subestación eléctrica con instalaciones de apoyo, y autorización para
+        construir 24,19 km de vías nuevas, 10 ocupaciones de cauce, así como plataformas permanentes y temporales para
+        permitir la instalación, operación y mantenimiento de los aerogeneradores.
+      </p>
+
+      <p>
+        La zona de influencia abarca 14 comunidades Wayuu, con las cuales se surtió el proceso de Consulta Previa
+        liderado por la Dirección de Consulta Previa (DANCP) del Ministerio del Interior. La energía generada será
+        entregada al Sistema Interconectado Nacional (SIN), en un circuito a 500 kV hasta la subestación Colectora.
+      </p>
+
+      <h4 class="mt-4">Oportunidades y desafíos</h4>
+      <p>
+        Las centrales eólicas, también conocidas como parques eólicos, son una fuente de energía renovable y respetuosa
+        con el medio ambiente que utiliza el viento para generar electricidad. Una de sus mayores ventajas es que
+        emplean una fuente ilimitada y gratuita, sin emisiones de gases de efecto invernadero, lo cual contribuye a
+        mejorar la calidad del aire y a mitigar el cambio climático.
+      </p>
+
+      <p>
+        Además, una vez construidas, pueden reducir los costos de producción energética y ofrecer mayor seguridad
+        energética gracias a su predictibilidad. También permiten instalarse en zonas remotas o marinas, ampliando el
+        alcance de la electrificación.
+      </p>
+
+      <p>
+        Un estudio reciente realizado por la Fundación Universidad de América mediante simulaciones de dinámica de
+        fluidos computacional (CFD) evaluó el recurso eólico en Valledupar. Los resultados mostraron que, aunque los
+        vientos son moderados, existen áreas con potencial para generación eólica a pequeña y mediana escala.
+      </p>
+
+      <p>
+        Sin embargo, también se identificaron desafíos importantes, como la variabilidad de la velocidad del viento, la
+        densa vegetación que puede interferir con el flujo de aire, y la escasa presencia de empresas locales enfocadas
+        en proyectos eólicos, lo que limita el desarrollo de esta fuente en ciertas regiones.
+      </p>
     </div>
   </section>
 
+  <!-- Calculadora -->
   <section id="calculadora">
-    <div class="container">
-      <h2>Calculadora Consumo</h2>
+    <div class="container bg-light rounded shadow-sm p-4">
+      <h2 class="text-center mb-4">Calculadora Consumo</h2>
       <p>Inscríbete para calcular tu consumo de energía anual.</p>
-
       <form id="Registrarse" class="needs-validation" novalidate>
         <div class="mb-3">
           <label for="name" class="form-label">Nombre:</label>
@@ -188,9 +472,11 @@
     </div>
   </section>
 
+  <!-- Menú dinámico -->
   <script>
     let lastScrollTop = 0;
     const menu = document.getElementById('menu-container');
+
     window.addEventListener('scroll', function () {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       menu.style.top = scrollTop > lastScrollTop ? '-120px' : '0';
@@ -198,6 +484,7 @@
     });
   </script>
 
+  <!-- Validación -->
   <script>
     (function () {
       'use strict';
@@ -217,6 +504,8 @@
     })();
   </script>
 
-  <script src="js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

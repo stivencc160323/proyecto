@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Energía Eólica</title>
 
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&display=swap" rel="stylesheet">
 
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
 
   <style>
     :root {
@@ -31,7 +35,33 @@
     }
 
     section {
-      padding: 60px 20px;
+      padding: 40px 20px;
+    }
+
+    section:not(#inicio-parallax) {
+      padding-top: 60px;
+    }
+
+    /* Ajustes de separación */
+    p {
+      margin-bottom: 12px;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin-bottom: 16px;
+      margin-top: 24px;
+    }
+
+    ul {
+      margin-top: 8px;
+      margin-bottom: 16px;
+    }
+
+    .container.bg-light {
+      padding: 20px;
     }
 
     /* Parallax */
@@ -57,18 +87,19 @@
       text-align: center;
     }
 
-    section:not(#inicio-parallax) {
-      padding-top: 100px;
-    }
-
     @media (max-width: 768px) {
       .parallax {
         background-attachment: scroll;
       }
+
+      .seccion-fondo {
+        margin-top: 20px;
+        padding-top: 20px;
+      }
     }
 
     #menu-container {
-      background-color: rgb(253, 238, 238);
+      background-color: #F5F5B9;
       padding: 30px;
       position: fixed;
       top: 0;
@@ -106,23 +137,53 @@
       width: 40px;
       height: 40px;
     }
+
+    /* Secciones con fondo y espaciado negativo */
+    .seccion-fondo {
+      position: relative;
+      margin-top: 0%;
+      padding: 80px 20px 60px;
+      background-color: #ffffff;
+      z-index: 1;
+    }
+
+    /* Colores personalizables */
+    .fondo-azul {
+      background-color: #e0f0ff;
+    }
+
+    .fondo-verde {
+      background-color: #e6ffe6;
+    }
+
+    .fondo-amarillo {
+      background-color: #fffde0;
+    }
+
+    .fondo-gris {
+      background-color: #f1f1f1;
+    }
   </style>
 </head>
 
+
 <body>
+
 
   <!-- Menú -->
   <nav id="menu-container">
     <ul id="menu-list" class="nav justify-content-center">
       <li class="nav-item">
-        <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M12 12c2.76 0 5 -2.01 5 -4.5s-2.24 -4.5 -5 -4.5v9z" />
-          <path d="M12 12c0 2.76 2.01 5 4.5 5s4.5 -2.24 4.5 -5h-9z" />
-          <path d="M12 12c-2.76 0 -5 2.01 -5 4.5s2.24 4.5 5 4.5v-9z" />
-          <path d="M12 12c0 -2.76 -2.01 -5 -4.5 -5s-4.5 2.24 -4.5 5h9z" />
-        </svg>
+        <a href="#inicio-parallax" class="d-flex align-items-center text-dark" style="text-decoration: none;">
+          <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M12 12c2.76 0 5 -2.01 5 -4.5s-2.24 -4.5 -5 -4.5v9z" />
+            <path d="M12 12c0 2.76 2.01 5 4.5 5s4.5 -2.24 4.5 -5h-9z" />
+            <path d="M12 12c-2.76 0 -5 2.01 -5 4.5s2.24 4.5 5 4.5v-9z" />
+            <path d="M12 12c0 -2.76 -2.01 -5 -4.5 -5s-4.5 2.24 -4.5 5h9z" />
+          </svg>
+        </a>
       </li>
       <li class="nav-item"><a class="menu-item" href="#parques">Parques Eólicos</a></li>
       <li class="nav-item"><a class="menu-item" href="#funcionamiento">Funcionamiento</a></li>
@@ -134,6 +195,7 @@
     </ul>
   </nav>
 
+
   <!-- Parallax -->
   <section id="inicio-parallax" class="parallax">
     <div class="overlay text-center">
@@ -142,21 +204,25 @@
     </div>
   </section>
 
+
   <!-- Contenido -->
-  <section id="parques" class="py-5">
+  <section id="parques" class="py-5 seccion-fondo fondo-azul">
     <div class="container bg-light rounded shadow-sm p-4">
       <h2 class="text-center mb-4">Parques Eólicos</h2>
+
 
       <p class="mb-4"><strong>¿Qué es?</strong><br>
         Un parque eólico o campo eólico es una extensión de varios kilómetros cuadrados en la cual se alberga un
         conjunto de turbinas eólicas para aprovechar los vientos en mar y tierra y generar electricidad.
       </p>
 
+
       <p class="mb-4">
         El funcionamiento de estas turbinas eólicas se basa en un principio muy básico: sacar el máximo potencial de la
         fuerza del viento. Esta actúa como fuente de energía primaria, que al hacer girar las aspas genera energía
         cinética que un generador transforma en energía eléctrica.
       </p>
+
 
       <p class="mb-4">
         La cantidad de energía generada depende de varios factores como el tamaño de las turbinas, la localización y la
@@ -165,12 +231,14 @@
         superan los 5 MW.
       </p>
 
+
       <p class="mb-4"><strong>¿Cómo es el funcionamiento de un parque eólico?</strong><br>
         Un aerogenerador está compuesto por una torre, una góndola y un rotor con palas orientadas al viento. Las
         hélices giran y mueven un generador eléctrico que produce energía. Esta se transporta a través de cables
         subterráneos a un transformador, que la redistribuye para alimentar la red eléctrica y abastecer hogares y
         empresas.
       </p>
+
 
       <p class="mb-0"><strong>¿Cómo es el proceso de selección del lugar de instalación?</strong><br>
         Los parques eólicos se instalan en lugares donde los vientos terrestres o marinos pueden ser aprovechados sin
@@ -186,7 +254,8 @@
     </div>
   </section>
 
-  <section id="funcionamiento">
+
+  <section id="funcionamiento" class="seccion-fondo fondo-verde">
     <div class="container bg-light rounded shadow-sm p-4">
       <h2 class="text-center mb-4">Funcionamiento</h2>
       <div class="row">
@@ -232,10 +301,12 @@
           </p>
         </div>
 
+
       </div>
   </section>
 
-  <section id="tipos">
+
+  <section id="tipos" class="seccion-fondo fondo-amarillo">
     <div class="container bg-light rounded shadow-sm p-4">
       <h2 class="text-center mb-4">Tipos de Parques Eólicos y sus Ventajas</h2>
       <div class="row">
@@ -247,12 +318,14 @@
             La ventaja que ofrece este emplazamiento es su fácil accesibilidad y la cercanía a la red eléctrica.
           </p>
 
+
           <h5>Parques Eólicos Off-shore</h5>
           <p>
             Estas estructuras se construyen en mar abierto a varias millas de la costa. Entre sus principales beneficios
             frente a las instalaciones terrestres está que la fuerza del viento es superior, a menor altura y más
             regular que en tierra firme.
           </p>
+
 
           <h5>Características Costa Afuera</h5>
           <p>
@@ -266,6 +339,7 @@
           </p>
         </div>
 
+
         <div class="col-md-6">
           <h5>Características Costa Adentro</h5>
           <p>
@@ -275,6 +349,7 @@
             eficiente.
             Además, minimizan el impacto visual y acústico y permiten grandes extensiones de instalación.
           </p>
+
 
           <h5>Diferencias entre Costa Afuera y Costa Adentro</h5>
           <ul>
@@ -289,12 +364,14 @@
       </div>
   </section>
 
+
   <section id="economia"
-    style="background-image: url('plasa_mercado.jpg  '); background-size: cover; background-attachment: fixed; background-position: center; padding: 100px 20px;">
+    style="background-image: url('plasa_mercado.jpg'); background-size: cover; background-attachment: fixed; background-position: center; padding: 100px 20px;">
     <div class="container bg-light bg-opacity-75 rounded p-5 shadow-lg">
       <h2 class="text-center mb-4">Sectores Económicos Beneficiados por los Parques Eólicos</h2>
       <p class="text-center">No solo el sector energético es beneficiado por el desarrollo de los parques eólicos, sino
         también una variedad de sectores económicos.</p>
+
 
       <div class="accordion accordion-flush mt-4" id="accordionEconomia">
         <div class="accordion-item mb-3">
@@ -313,6 +390,7 @@
           </div>
         </div>
 
+
         <div class="accordion-item mb-3">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse"
@@ -329,6 +407,7 @@
           </div>
         </div>
 
+
         <div class="accordion-item mb-3">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed fs-5 fw-bold" type="button" data-bs-toggle="collapse"
@@ -343,6 +422,7 @@
             </div>
           </div>
         </div>
+
 
         <div class="accordion-item mb-3">
           <h2 class="accordion-header">
@@ -362,7 +442,8 @@
     </div>
   </section>
 
-  <section id="colombia">
+
+  <section id="colombia" class="seccion-fondo fondo-azul">
     <div class="container bg-light rounded shadow-sm p-4">
       <h2 class="text-center mb-4">En Colombia</h2>
       <p>
@@ -388,9 +469,10 @@
       </p>
     </div>
   </section>
-  <section id="actualidad">
+  <section id="actualidad" class="seccion-fondo fondo-azul">
     <div class="container bg-light rounded shadow-sm p-4">
       <h2 class="text-center mb-4">Actualidad</h2>
+
 
       <h4>Parque Eólico Trupillo – La Guajira</h4>
       <p>
@@ -398,6 +480,7 @@
         renovable que la Autoridad Nacional de Licencias Ambientales (ANLA) ha viabilizado mediante el otorgamiento de
         la licencia ambiental al parque eólico Trupillo con una generación de 100 MW.
       </p>
+
 
       <p>
         Este proyecto había sido radicado previamente ante la Autoridad en el año 2022; sin embargo, fue retirado por el
@@ -407,6 +490,7 @@
         permitió a la ANLA, en un plazo de seis meses, dar viabilidad ambiental al desarrollo del parque eólico.
       </p>
 
+
       <p>
         Todo esto se logró gracias a jornadas de fortalecimiento en licenciamiento ambiental organizadas por la ANLA con
         gremios y actores asociados. El proyecto contempla la instalación y operación de 26 aerogeneradores con una
@@ -415,11 +499,13 @@
         permitir la instalación, operación y mantenimiento de los aerogeneradores.
       </p>
 
+
       <p>
         La zona de influencia abarca 14 comunidades Wayuu, con las cuales se surtió el proceso de Consulta Previa
         liderado por la Dirección de Consulta Previa (DANCP) del Ministerio del Interior. La energía generada será
         entregada al Sistema Interconectado Nacional (SIN), en un circuito a 500 kV hasta la subestación Colectora.
       </p>
+
 
       <h4 class="mt-4">Oportunidades y desafíos</h4>
       <p>
@@ -429,17 +515,20 @@
         mejorar la calidad del aire y a mitigar el cambio climático.
       </p>
 
+
       <p>
         Además, una vez construidas, pueden reducir los costos de producción energética y ofrecer mayor seguridad
         energética gracias a su predictibilidad. También permiten instalarse en zonas remotas o marinas, ampliando el
         alcance de la electrificación.
       </p>
 
+
       <p>
         Un estudio reciente realizado por la Fundación Universidad de América mediante simulaciones de dinámica de
         fluidos computacional (CFD) evaluó el recurso eólico en Valledupar. Los resultados mostraron que, aunque los
         vientos son moderados, existen áreas con potencial para generación eólica a pequeña y mediana escala.
       </p>
+
 
       <p>
         Sin embargo, también se identificaron desafíos importantes, como la variabilidad de la velocidad del viento, la
@@ -449,8 +538,9 @@
     </div>
   </section>
 
+
   <!-- Calculadora -->
-  <section id="calculadora">
+  <section id="calculadora" class="seccion-fondo fondo-verde">
     <div class="container bg-light rounded shadow-sm p-4">
       <h2 class="text-center mb-4">Calculadora Consumo</h2>
       <p>Inscríbete para calcular tu consumo de energía anual.</p>
@@ -461,21 +551,25 @@
           <div class="invalid-feedback">Por favor ingresa tu nombre.</div>
         </div>
 
+
         <div class="mb-3">
           <label for="email" class="form-label">Correo Electrónico:</label>
           <input type="email" class="form-control" id="email" name="email" required>
           <div class="invalid-feedback">Por favor ingresa un correo válido.</div>
         </div>
 
+
         <button type="submit" class="btn btn-primary">Registrarse</button>
       </form>
     </div>
   </section>
 
+
   <!-- Menú dinámico -->
   <script>
     let lastScrollTop = 0;
     const menu = document.getElementById('menu-container');
+
 
     window.addEventListener('scroll', function () {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -483,6 +577,7 @@
       lastScrollTop = scrollTop;
     });
   </script>
+
 
   <!-- Validación -->
   <script>
@@ -504,8 +599,16 @@
     })();
   </script>
 
+
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<!-- Pie de página -->
+<footer class="text-center text-white" style="background-color: #343a40; padding: 20px 0;">
+  <div class="container">
+    <p class="mb-1">© 2025 Energía Eólica. Todos los derechos reservados.</p>
+    <p class="mb-0">Sitio desarrollado con fines educativos.</p>
+  </div>
+</footer>
 
 </html>

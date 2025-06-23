@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>animación</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      font-family: sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .intro {
+      height: 100vh;
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .parallax-section {
+      position: relative;
+      height: 100vh;
+      background-image: url('parque_eolico.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 50px;
+      max-width: 700px;
+      border-radius: 15px;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .outro {
+      height: 120vh;
+      background-color: #eaeaea;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="intro">
+    <div>
+      <h1>Sección de introducción</h1>
+      <p>Desplázate hacia abajo para ver el efecto parallax en la sección del medio.</p>
+    </div>
+  </div>
+
+  <div class="parallax-section">
+    <div class="overlay">
+      <h1>Imagen con Parallax</h1>
+      <p>Esta imagen aparece en la mitad de la página y se mueve más lentamente que el resto del contenido.</p>
+    </div>
+  </div>
+
+  <div class="outro">
+    <h2>Más contenido</h2>
+    <p>
+      Esta es la continuación de la página. El efecto parallax se mantuvo solo en la sección del medio.
+    </p>
+  </div>
+
+</body>
+</html>

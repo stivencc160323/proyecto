@@ -28,12 +28,6 @@
       background-color: #f8f9fa;
     }
 
-    h1,
-    h2,
-    h3 {
-      font-family: var(--font-title);
-    }
-
     section {
       padding: 40px 20px;
     }
@@ -42,50 +36,84 @@
       padding-top: 60px;
     }
 
-    /* Ajustes de separación */
-    p {
-      margin-bottom: 12px;
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    font-family: var(--font-title);
     }
 
-    h2,
-    h3,
-    h4,
-    h5 {
+    h2 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      line-height: 1.3;
+      font-family: var(--font-title);
       margin-bottom: 16px;
       margin-top: 24px;
     }
 
-    ul {
-      margin-top: 8px;
+    h3 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      line-height: 1.4;
+      font-family: var(--font-title);
       margin-bottom: 16px;
+      margin-top: 24px;
+    }
+
+    p {
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #222;
+      font-family: var(--font-main)
+    }
+
+
+    ul {
+      padding-left: 1.2rem;
+      list-style: none;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      color: #222;
     }
 
     .container.bg-light {
       padding: 20px;
     }
 
-    /* Parallax */
-    .parallax {
+    .parallax-video-container {
       position: relative;
       height: 100vh;
-      background-image: url('parque_eolico.jpg');
-      background-attachment: fixed;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      overflow: hidden;
+    }
+
+    .background-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
     }
 
     .overlay {
-      background-color: rgba(255, 255, 255, 0.7);
-      padding: 60px 30px;
+      position: relative;
+      z-index: 1;
+      background-color: rgba(197, 220, 250, 0.6);
+      padding: 200px 20px 30px;
       border-radius: 15px;
       max-width: 800px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(3px);
+      margin: auto;
       text-align: center;
+      backdrop-filter: blur(2px);
     }
+
 
     @media (max-width: 768px) {
       .parallax {
@@ -100,7 +128,7 @@
 
     #menu-container {
       background-color: #F5F5B9;
-      padding: 30px;
+      padding: 10px;
       position: fixed;
       top: 0;
       width: 100%;
@@ -124,19 +152,40 @@
       font-family: var(--font-title);
       font-size: 20px;
       cursor: pointer;
-      transition: background-color 0.5s, cursor 0.5s;
+      transition: all 0.4s ease;
       text-decoration: none;
+      border-radius: 8px; /* forma base (puedes poner 0 si prefieres que se redondee solo en hover) */
     }
 
     .menu-item:hover {
       background-color: rgb(197, 197, 250);
       font-weight: bold;
+      border-radius: 20px; /* se redondea más */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transform: scale(1.05); /* efecto de zoom sutil */
     }
+
 
     .menu-icon {
       width: 40px;
       height: 40px;
     }
+
+    .btn-verde {
+      background-color: #4faa43; /* verde Bootstrap */
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-verde:hover {
+      background-color: #218838; /* verde más oscuro */
+      transform: scale(1.05); /* sutil zoom */
+    }
+
 
     /* Secciones con fondo y espaciado negativo */
     .seccion-fondo {
@@ -145,23 +194,6 @@
       padding: 80px 20px 60px;
       background-color: #ffffff;
       z-index: 1;
-    }
-
-    /* Colores personalizables */
-    .fondo-azul {
-      background-color: #e0f0ff;
-    }
-
-    .fondo-verde {
-      background-color: #e6ffe6;
-    }
-
-    .fondo-amarillo {
-      background-color: #fffde0;
-    }
-
-    .fondo-gris {
-      background-color: #f1f1f1;
     }
 
     .scroll-container {
@@ -208,6 +240,96 @@
     .tipo-card.active .content {
       max-height: 500px;
     }
+
+    .foto-animada {
+      opacity: 0;
+      transform: translateX(300px); /* empieza desde la derecha */
+      transition: transform 0.8s ease, opacity 0.8s ease;
+    }
+
+    .foto-animada.visible {
+      opacity: 1;
+      transform: translateX(0); /* entra al centro */
+    }
+
+    .animar-desde-izquierda {
+      opacity: 0;
+      transform: translateX(-100px); /* desde la izquierda */
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .animar-desde-izquierda.visible {
+      opacity: 1;
+      transform: translateX(0); /* a su posición normal */
+    }
+
+    .video-container-scroll {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .video-scroll {
+      max-width: 100%;
+      width: 600px;
+      height: auto;
+      pointer-events: none; /* evita que el mouse lo interrumpa */
+    }
+
+    .video-fondo-colombia {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
+    }
+    #colombia .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .bloque {
+      min-height: 100vh; /* cada bloque ocupa pantalla completa */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+    }
+
+    /* Aplicación de degradados */
+    .bloque1 {
+      background-image: linear-gradient(to top, #f5d100 0%, #c2e9fb 50%);
+    }
+    
+    .bloque2 {
+      background-image: linear-gradient(to top, #f5d100 0%, #c2e9fb 50%, #64b87f 100%);
+      color: #000; /* degradado claro, mejor texto oscuro */
+    }   
+
+    .bloque3 {
+      background-image: linear-gradient(to top, #3cba92 0%, #50cc7f 50%, #f5d100 100%);
+    }
+
+    .bloque4 {
+      background-image: linear-gradient(to top,#0ba360 0%, #3cba92 100%);
+    }
+
+    .bloque5 {
+      background-image: linear-gradient(to top, #c2e9fb 0%, #0ba360 100%);
+    }
+
+    .bloque6 {
+      background-image: linear-gradient(to top, #0ba360 0%,  #c2e9fb 100%);
+    }
+
+        .bloque7 {
+      background-image: linear-gradient(to top, #c2e9fb 0%,  #0ba360 100%);
+    }
+
   </style>
 </head>
 
@@ -219,16 +341,34 @@
   <nav id="menu-container">
     <ul id="menu-list" class="nav justify-content-center">
       <li class="nav-item">
-        <a href="#inicio-parallax" class="d-flex align-items-center text-dark" style="text-decoration: none;">
-          <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M12 12c2.76 0 5 -2.01 5 -4.5s-2.24 -4.5 -5 -4.5v9z" />
-            <path d="M12 12c0 2.76 2.01 5 4.5 5s4.5 -2.24 4.5 -5h-9z" />
-            <path d="M12 12c-2.76 0 -5 2.01 -5 4.5s2.24 4.5 5 4.5v-9z" />
-            <path d="M12 12c0 -2.76 -2.01 -5 -4.5 -5s-4.5 2.24 -4.5 5h9z" />
-          </svg>
-        </a>
+      <a href="#inicio-parallax" class="d-flex align-items-center text-dark" style="text-decoration: none;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 594.73 932.92" width="60" height="60">
+    <style>
+      .fill1 { fill: #589ed5; }
+      .fill2 { fill: #5b5b5c; }
+      .fill3 { fill: #74b958; }
+    </style>
+    <g>
+      <!-- Parte principal -->
+      <path class="fill1" d="M254.15,915.21c.35-19.41-.13-38.8.73-58.24,1.21-27.22,3.77-54.35,4.77-81.61,.99-27,3.09-54.13,4.76-81.19,1.96-31.79,3.99-63.59,4.74-95.42,1.36-57.46,7.5
+      -114.65,9.05-172.09,.13-4.84,2.07-6.23,6.66-6.21,5.51,.02,11.21,.75,19-1.61-7.08-4.05-12.53-2.34-17.62-2.66-3.39-.21-6.87,.53-6.73-4.83,.13-5.21,3.38-4.61,6.89-4.63,17.61-.15,
+      17.62-.21,18.62,18.64,1.03,19.49,2.13,38.98,3.03,58.47,2.1,45.41,4.01,90.82,6.18,136.22,3.64,76.16,7.35,152.32,11.17,228.48,1.11,22.22,3.36,44.4,2.89,66.69-2.03,.5-4.07,1.41-6.
+      11,1.43-18.83,.16-37.67,.18-56.51,.21-3.91,0-7.95,.7-11.53-1.64Z"/>
+      <path class="fill2" d="M254.15,915.21c3.59,2.35,7.62,1.65,11.53,1.64,18.84-.03,37.67-.05,56.51-.21,2.04-.02,4.07-.93,6.11-1.43,16.45,1.21,32.89,.11,49.29-.71,5.61-.28,8.16,.16,
+      6.65,6.33-.35,1.45-.44,3.09-.15,4.54,1.23,6.14-1.02,7.49-7.22,7.37-32.32-.66-64.65-.9-96.97-.93-24.4-.02-48.83-.25-73.17,1.07-12.06.65-7.27-6.84-8.11-12.06-1.13-7.06,2.69-6.53,
+      8.04-6.3,15.81,.68,31.66,.52,47.49,.68Z"/>
+      <path class="fill3" d="M291.14,396.54c-16.67,.12-29.42-13.04-29.67-30.64-.22-15.65,13.92-29.46,30.2-29.49,15.52-.03,29.83,13.9,29.77,28.98-.07,17.93-12.8,31.02-30.31,31.15Z"/>
+
+      <!-- Elises -->
+      <path class="fill1" d="M244.4,245.1c4.16-34.22,8.22-66.91,12.1-99.62,3.32-28.05,5.87-56.21,9.86-84.16,2.36-16.54,5.47-32.98,7.15-49.64,.65-6.42,6.19-8.87,11.06-11.1,4.83-2.21,
+      4.76,2.43,5,5.12,.83,9.41,1.14,18.87,1.92,28.29,4.41,53.78,8.84,107.56,13.4,161.32,1.7,20.04,3.38,40.11,5.82,60.07,1.95,15.87-3.52,30.74-4.8,46.15-.58,6.97-2.44,13.83-3.02,20.8-.46,5.57-2.18,8.25-8.34,7.88-6.19-.37-14.12,2.79-18.2-.04-4.37-3.03-5.22-11.21-7.49-17.19-7.75-20.46-15.4-40.96-23.25-61.38Z"/>
+      <path class="fill1" d="M594.73,552.3c-1.66,3.33-2.63,8.63-8.71,4.84-25.19-15.73-52.4-27.71-78.27-42.24-42.46-23.85-86.06-45.68-129.19-68.32-12.1-6.35-19.85-17.62-29.77-26.42-8.88-7.87-16.43-17.22-25.02-25.43-3.06-2.92-3.49-4.67-1.44-8.39,8.79-15.98,8.64-16.03,26.69-11.36,17.13,4.43,34.1,9.75,51.47,12.88,14.44,2.6,24.72,10.68,34.97,19.92,43.53,39.24,87.19,78.35,130.86,117.44,7.96,7.12,16.24,13.89,24.3,20.9,1.78,1.55,4.15,2.8,4.11,6.19Z"/>
+      <path class="fill1" d="M265.38,394.97c-1.21,1.7-2.23,3.16-3.29,4.59-13.77,18.64-27.59,37.25-41.29,55.93-3.15,4.29-7.1,7.48-11.68,10.08-65.81,37.36-131.59,74.76-197.45,112.02-2.92,1.65-6.16,6.06-10.09,.65-3.77-5.19,0-7.91,3.09-10.7,29.64-26.81,59.3-53.6,89.05-80.29,32.48-29.14,65.1-58.12,97.55-87.29,3.7-3.32,7.43-6.17,12.21-7.77,15.05-5.03,29.99-10.41,44.39-17.12,4.33-2.02,6.58-1.63,7.76,3.41,1.05,4.47,3.28,8.49,6.62,11.85,1.23,1.24,1.99,2.94,3.12,4.65Z"/>
+    </g>
+      </svg>
+</a>
+
+
       </li>
       <li class="nav-item"><a class="menu-item" href="#parques">Parques Eólicos</a></li>
       <li class="nav-item"><a class="menu-item" href="#funcionamiento">Funcionamiento</a></li>
@@ -236,23 +376,30 @@
       <li class="nav-item"><a class="menu-item" href="#economia">Economía</a></li>
       <li class="nav-item"><a class="menu-item" href="#colombia">En Colombia</a></li>
       <li class="nav-item"><a class="menu-item" href="#actualidad">Actualidad</a></li>
-      <li class="nav-item"><a class="menu-item" href="#calculadora">Calculadora Consumo</a></li>
+      <li class="nav-item"><a type="submit" href="#calculadora" class="btn btn-verde">Calculadora</a></li>
     </ul>
   </nav>
 
 
-  <!-- Parallax -->
-  <section id="inicio-parallax" class="parallax">
-    <div class="overlay text-center">
-      <h1 class="display-4">Energía Eólica</h1>
-      <p class="lead">El poder del viento convertido en energía limpia.</p>
-    </div>
-  </section>
+<section id="inicio-parallax" class="parallax-video-container">
+  <video id="banner-video" class="background-video" muted playsinline preload="auto">
+    <source src="animacion banner.mp4" type="video/mp4">
+    Tu navegador no soporta el video.
+  </video>
+  <div class="overlay text-center">
+    <h1 class="display-4">Energía Eólica</h1>
+    <p class="lead">El poder del viento convertido en energía limpia.</p>
+  </div>
+</section>
+
 
 
   <!-- Contenido -->
-  <section id="parques" class="py-5 seccion-fondo fondo-azul">
-    <div class="container bg-light rounded shadow-sm p-4">
+  <section id="parques" class="py-5 seccion-fondo bloque bloque2">
+    <div class="content">
+      <div class="row align-items-center">
+      <!-- Columna de texto -->
+      <div class="col-md-6">
       <h2 class="text-center mb-4">Parques Eólicos</h2>
 
 
@@ -291,67 +438,70 @@
         los siguientes factores:
       </p>
       <ul class="mt-2 mb-0">
-        <li>El posible impacto en el medio ambiente.</li>
-        <li>La intensidad y frecuencia de los vientos.</li>
-        <li>La orografía y accesibilidad del terreno.</li>
-        <li>La viabilidad legal y territorial del proyecto.</li>
+        <li>-El posible impacto en el medio ambiente.</li>
+        <li>-intensidad y frecuencia de los vientos.</li>
+        <li>-La orografía y accesibilidad del terreno.</li>
+        <li>-La viabilidad legal y territorial del proyecto.</li>
       </ul>
+      </div>
+
+      <div class="col-md-6 text-center">
+        <img src="parque_eolico.jpg" alt="Gráfico eólico" class="img-fluid foto-animada visible" style="max-height: 600px;" />
+      </div>
+      </div>
     </div>
   </section>
 
 
-  <section id="funcionamiento" class="seccion-fondo fondo-verde">
-    <div class="container bg-light rounded shadow-sm p-4">
-      <h2 class="text-center mb-4">Funcionamiento</h2>
-      <div class="row">
-        <!-- Columna 1: Aerogeneradores -->
-        <div class="col-md-6">
-          <h4>Funcionamiento del Transformador (Central Eólica)</h4>
-          <p>
-            Una vez el generador transforma la energía cinética que recibe en electricidad, se utiliza un transformador
-            para
-            elevar la tensión (de 20 KV , 66 KV) y poder transportar la corriente por el parque eólico. De este modo, la
-            energía
-            se transmite mediante cables de media tensión hasta la subestación.
-          </p>
-          <p>
-            Una vez allí, se convierte en corriente de alto voltaje (por encima de los 132 KV). A continuación, se
-            coloca una línea
-            de evacuación que transfiere la electricidad hasta las instalaciones conectadas a la red de distribución.
-            Esta última
-            será la encargada de transportar la electricidad hasta las empresas y los hogares.
-          </p>
-        </div>
-        <!-- Columna 2: Transformador -->
-        <div class="col-md-6">
-          <h4>Funcionamiento de los Aerogeneradores</h4>
-          <p>
-            El funcionamiento de un aerogenerador depende de un mecanismo muy sencillo. El rotor, activado por el
-            viento,
-            transmite su movimiento a un eje de alta velocidad. Este multiplicador transforma el lento desplazamiento de
-            las palas (entre 18 y 25 revoluciones por minuto) en una rotación más rápida (de hasta 1.800 revoluciones
-            por
-            minuto) capaz de hacer funcionar el generador eléctrico. Este último será el encargado de transformar la
-            energía
-            mecánica recibida en energía eléctrica.
-          </p>
-          <p>
-            Los aerogeneradores se clasifican generalmente de acuerdo con la dirección del eje:
-          <ul>
-            <li><strong>Aerogeneradores de eje vertical (VAWT):</strong> sus palas giran en torno a un eje central
-              vertical.</li>
-            <li><strong>Aerogeneradores de eje horizontal (HAWT):</strong> las palas giran en dirección perpendicular a
-              la velocidad del viento.</li>
-          </ul>
-          </p>
-        </div>
+<section id="funcionamiento" class="py-5 seccion-fondo bloque bloque3 position-relative overflow-hidden">
+  <div class="content">
+    <h2 class="text-center mb-4">Funcionamiento</h2>
 
-
+    <div class="row">
+      <!-- Columna 1 -->
+      <div class="col-md-6">
+        <h4>Funcionamiento del Transformador (Central Eólica)</h4>
+        <p>
+          Una vez el generador transforma la energía cinética que recibe en electricidad, se utiliza un transformador
+          para elevar la tensión (de 20 KV , 66 KV) y poder transportar la corriente por el parque eólico. De este modo,
+          la energía se transmite mediante cables de media tensión hasta la subestación.
+        </p>
+        <p>
+          Una vez allí, se convierte en corriente de alto voltaje (por encima de los 132 KV). A continuación, se coloca
+          una línea de evacuación que transfiere la electricidad hasta las instalaciones conectadas a la red de
+          distribución.
+        </p>
       </div>
-  </section>
+
+      <!-- Columna 2 -->
+      <div class="col-md-6">
+        <h4>Funcionamiento de los Aerogeneradores</h4>
+        <p>
+          El funcionamiento de un aerogenerador depende de un mecanismo muy sencillo. El rotor, activado por el viento,
+          transmite su movimiento a un eje de alta velocidad. Este multiplicador transforma el lento desplazamiento de
+          las palas en una rotación más rápida capaz de hacer funcionar el generador eléctrico.
+        </p>
+        <ul>
+          <li><strong>Aerogeneradores de eje vertical (VAWT):</strong> sus palas giran en torno a un eje central vertical.</li>
+          <li><strong>Aerogeneradores de eje horizontal (HAWT):</strong> las palas giran en dirección perpendicular a la velocidad del viento.</li>
+        </ul>
+      </div>
+    </div>
+
+    
+    <div class="video-container-scroll mt-5 text-center">
+      <video class="video-scroll" autoplay muted loop playsinline>
+        <source src="funcionamiento.webm" type="video/webm">
+        Tu navegador no soporta este video.
+      </video>
+    </div>
+  </div> 
+</section>
 
 
-  <section id="tipos" class="seccion-fondo">
+
+
+  <section id="tipos" class="py-5 seccion-fondo bloque bloque4">
     <div class="container bg-light rounded shadow-sm p-4">
       <h2 class="text-center mb-4">Tipos de Parques Eólicos y sus Ventajas</h2>
       <div class="scroll-container" id="tipos-scroll">
@@ -396,7 +546,7 @@
   </section>
 
   <section id="economia"
-    style="background-image: url('plasa_mercado.jpg'); background-size: cover; background-attachment: fixed; background-position: center; padding: 100px 20px;">
+    style="background-image: url('mercado.png'); background-size: cover; background-attachment: fixed; background-position: center; padding: 100px 20px;">
     <div class="container bg-light bg-opacity-75 rounded p-5 shadow-lg">
       <h2 class="text-center mb-4">Sectores Económicos Beneficiados por los Parques Eólicos</h2>
       <p class="text-center">No solo el sector energético es beneficiado por el desarrollo de los parques eólicos, sino
@@ -473,8 +623,17 @@
   </section>
 
 
-  <section id="colombia" class="seccion-fondo fondo-azul">
-    <div class="container bg-light rounded shadow-sm p-4">
+  <section id="colombia" class="py-5 seccion-fondo bloque bloque5">
+    
+    <video id="videoFondoColombia" class="video-fondo-colombia" muted playsinline>
+    <source src="colombia.mp4" type="video/mp4">
+    Tu navegador no soporta este video.
+    </video>
+    
+    <div class="content position-relative">
+      <div class="row justify-content-center">
+        
+        <div class="col-lg-8 col-md-10">
       <h2 class="text-center mb-4">En Colombia</h2>
       <p>
         Colombia cuenta con un alto potencial en fuentes de energía renovable como la solar y la eólica, respaldado por
@@ -497,12 +656,19 @@
         proyecciones, en el año 2050 se invertiría esta participación: la demanda de gas y energía eléctrica sería de un
         46 %, mientras que la de combustibles líquidos sería de un 36 %.
       </p>
+      </div>
+      </div>
     </div>
-  </section>
-  <section id="actualidad" class="seccion-fondo fondo-azul">
-    <div class="container bg-light rounded shadow-sm p-4">
-      <h2 class="text-center mb-4">Actualidad</h2>
 
+    
+  </section>
+
+
+  <section id="actualidad" class="seccion-fondo bloque bloque6">
+    <div class="content">
+      <div class="row align-items-center">
+      <div class="col-md-6">
+      <h2 class="text-center mb-4">Actualidad</h2>
 
       <h4>Parque Eólico Trupillo, La Guajira</h4>
       <p>
@@ -535,9 +701,24 @@
         liderado por la Dirección de Consulta Previa (DANCP) del Ministerio del Interior. La energía generada será
         entregada al Sistema Interconectado Nacional (SIN), en un circuito a 500 kV hasta la subestación Colectora.
       </p>
+      </div>
 
+      <div class="col-md-6 text-center">
+        <img src="Parque Eólico Trupillo, La Guajira.jpeg" alt="Gráfico eólico" class="img-fluid foto-animada" style="max-height: 600px;" />
+      </div>
+      </div>
+    </div>
+    </section>
 
-      <h4 class="mt-4">Oportunidades y desafíos</h4>
+    <section id="oportunidad" class="seccion-fondo bloque bloque7">
+      <div class="content">
+      <div class="row align-items-center">
+      <div class="col-md-6 text-center">
+        <img src="ventajas.jpg" alt="Gráfico eólico" class="img-fluid animar-desde-izquierda" style="max-height: 600px;" />
+      </div>
+    
+      <div class="col-md-6">
+      <h2 class="mt-4">Oportunidades</h2>
       <p>
         Las centrales eólicas, también conocidas como parques eólicos, son una fuente de energía renovable y respetuosa
         con el medio ambiente que utiliza el viento para generar electricidad. Una de sus mayores ventajas es que
@@ -558,19 +739,39 @@
         fluidos computacional (CFD) evaluó el recurso eólico en Valledupar. Los resultados mostraron que, aunque los
         vientos son moderados, existen áreas con potencial para generación eólica a pequeña y mediana escala.
       </p>
+      </div>
+      </section>
 
+      <section id="desafío" class="seccion-fondo bloque bloque6"> 
+      <div class="content">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+      <h2 class="mt-4">Desafíos</h2>
 
       <p>
         Sin embargo, también se identificaron desafíos importantes, como la variabilidad de la velocidad del viento, la
         densa vegetación que puede interferir con el flujo de aire, y la escasa presencia de empresas locales enfocadas
         en proyectos eólicos, lo que limita el desarrollo de esta fuente en ciertas regiones.
       </p>
+      </div>
+
+      <div class="col-md-6 text-center">
+        <img src="desventajas.jpg" alt="Gráfico eólico" class="img-fluid foto-animada" style="max-height: 800px;" />
+      </div>
+
+      </div>
+      </div>
+      </section>
+
+
     </div>
-  </section>
+   </div>
+  </div>  
+  
 
 
   <!-- Calculadora -->
-  <section id="calculadora" class="seccion-fondo fondo-verde">
+  <section id="calculadora" class="seccion-fondo">
     <div class="container bg-light rounded shadow-sm p-4">
       <h2 class="text-center mb-4">Calculadora Consumo</h2>
       <p>Inscríbete para calcular tu consumo de energía anual.</p>
@@ -609,25 +810,67 @@
   </script>
 
 
-  <!-- Validación -->
+  <!-- animacion scroll -->
+
   <script>
-    (function () {
-      'use strict';
-      var forms = document.querySelectorAll('.needs-validation');
-      Array.prototype.slice.call(forms).forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-          } else {
-            event.preventDefault();
-            window.location.href = 'gráfica_lineas.html';
-          }
-          form.classList.add('was-validated');
-        }, false);
-      });
-    })();
-  </script>
+  const video = document.getElementById("banner-video");
+  let lastScroll = window.scrollY;
+
+  const FPS = 30;
+  const DURATION = 5; // segundos
+  const TOTAL_FRAMES = FPS * DURATION;
+
+  function updateVideoFrame() {
+    const scrollTop = window.scrollY;
+    const scrollDirection = scrollTop > lastScroll ? 1 : -1;
+
+    const maxScroll = window.innerHeight * 1; // Ajusta este valor si quieres más o menos rango
+    const scrollPercent = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
+    const targetFrame = scrollPercent * TOTAL_FRAMES;
+
+    video.currentTime = targetFrame / FPS;
+
+    lastScroll = scrollTop;
+  }
+
+  window.addEventListener("scroll", () => {
+    requestAnimationFrame(updateVideoFrame);
+  });
+
+  // Prevenir reproducción automática
+  video.pause();
+  video.currentTime = 0;
+</script>
+
+ <!-- segunda animacion scroll -->
+
+<script>
+  const videoColombia = document.getElementById('videoFondoColombia');
+  const fps = 30;
+  const duration = 5; // segundos
+  const totalFrames = fps * duration;
+
+  window.addEventListener('scroll', () => {
+    const seccion = document.getElementById('colombia');
+    const rect = seccion.getBoundingClientRect();
+    const visibleHeight = window.innerHeight;
+
+    if (rect.top < visibleHeight && rect.bottom > 0) {
+      const progress = 1 - Math.max(0, Math.min(1, (rect.top + rect.height) / (visibleHeight + rect.height)));
+      const frame = Math.floor(progress * totalFrames);
+      const time = frame / fps;
+
+      if (!isNaN(time)) {
+        videoColombia.currentTime = time;
+      }
+    }
+  });
+
+  // Asegúrate de que no se reproduzca automáticamente como loop
+  videoColombia.pause();
+  videoColombia.currentTime = 0;
+</script>
+
 
   <script>
     const cards = document.querySelectorAll('.tipo-card');
@@ -647,6 +890,50 @@
   </script>
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- despliegue foto -->
+
+<script>
+  // Obtenemos todas las imágenes que deben animarse
+  const imagenesAnimadas = document.querySelectorAll('.foto-animada');
+
+  // Creamos un solo observer que maneja todo
+  const imgObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible'); // Para animación reversible
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+  
+  // Observamos cada imagen animada
+  imagenesAnimadas.forEach(img => imgObserver.observe(img));
+</script>
+
+<script>
+  const imagenIzquierda = document.querySelector('.animar-desde-izquierda');
+
+  const observerIzquierda = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  if (imagenIzquierda) {
+    observerIzquierda.observe(imagenIzquierda);
+  }
+</script>
+
 
 </body>
 <!-- Pie de página -->

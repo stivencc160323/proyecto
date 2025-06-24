@@ -40,6 +40,13 @@ h3 {
     margin-bottom: 16px;
     margin-top: 24px;
 }
+h4 {
+    margin-bottom: 12px;
+    font-size: 0.7rem;
+    line-height: 1.7;
+    color: #ffffff;
+    font-family: var(--font-main)
+}
 
 p {
     margin-bottom: 12px;

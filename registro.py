@@ -17,12 +17,7 @@ class Manejador(BaseHTTPRequestHandler):
             escritor = csv.writer(archivo)
             escritor.writerow([nombre, correo])
 
-        # Respuesta al navegador
-        self.send_response(200)
-        self.send_header('Content-type', 'text/html')
-        self.end_headers()
-        self.wfile.write(b"<h2>Registro guardado correctamente.</h2>")
-
+        
 # Iniciar servidor en localhost:8000
 if __name__ == '__main__':
     servidor = HTTPServer(('localhost', 8000), Manejador)

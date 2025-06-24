@@ -10,7 +10,26 @@ window.addEventListener('scroll', function () {
   lastScrollTop = scrollTop;
 });
 
+(function () {
+  'use strict';
 
+  // Selecciona todos los formularios que requieren validación
+  const forms = document.querySelectorAll('.needs-validation');
+
+  Array.prototype.slice.call(forms).forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      } else {
+        event.preventDefault(); // Opcional: para evitar recarga si rediriges
+        window.location.href = 'grafica_lineas.html'; // sin tilde
+      }
+
+      form.classList.add('was-validated');
+    }, false);
+  });
+})();
 
 
 
@@ -48,28 +67,6 @@ window.addEventListener("scroll", () => {
 // Prevenir reproducción automática
 video.pause();
 video.currentTime = 0;
-
-(function () {
-  'use strict';
-
-  // Selecciona todos los formularios que requieren validación
-  const forms = document.querySelectorAll('.needs-validation');
-
-  Array.prototype.slice.call(forms).forEach(function (form) {
-    form.addEventListener('submit', function (event) {
-      if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-      } else {
-        event.preventDefault(); // Opcional: para evitar recarga si rediriges
-        window.location.href = 'grafica_lineas.html'; // sin tilde
-      }
-
-      form.classList.add('was-validated');
-    }, false);
-  });
-})();
-
 
 
 const videoColombia = document.getElementById('videoFondoColombia');

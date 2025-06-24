@@ -1,3 +1,6 @@
+body {
+  overflow-x: hidden;
+}
 :root {
     --font-main: 'Open Sans', sans-serif;
     --font-title: 'Poppins', sans-serif;

@@ -1,5 +1,6 @@
 let lastScrollTop = 0;
-const menu = document.getElementById('menu-container');
+const menu = document.querySelector('.mi-navbar');
+
 
 
 

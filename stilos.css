@@ -308,6 +308,70 @@ html, body {
   overflow-x: hidden;
 }
 
+/* Fondo y estructura del navbar */
+.mi-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #F5F5B9;
+  transition: top 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+
+.mi-navbar .nav-link {
+  border-radius: 8px;
+  transition: all 0.4s ease;
+}
+
+.mi-navbar .nav-link:hover {
+  background-color: rgb(197, 197, 250);
+  font-weight: bold;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+
+/* Botón personalizado */
+.mi-navbar .btn-verde {
+  background-color: #74b958;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 6px 16px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.mi-navbar .btn-verde:hover {
+  background-color: #5fa746;
+}
+
+/* Botón hamburguesa blanco */
+.navbar-toggler {
+  border-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Menú desplegado en móvil */
+@media (max-width: 991.98px) {
+  .mi-navbar .navbar-collapse {
+    background-color: #F5F5B9; /* mismo fondo */
+    padding: 15px 0;
+  }
+
+  .mi-navbar .nav-link {
+    display: block;
+    margin: 10px 0;
+    color: rgb(0, 0, 0) !important;
+  }
+
+  .mi-navbar .btn-verde {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+
 .bloque {
     min-height: 100vh;
     /* cada bloque ocupa pantalla completa */

@@ -295,6 +295,19 @@ ul li {
     z-index: 2;
 }
 
+.fondo-texto-elegante {
+  background-color: rgba(255, 255, 255, 0.65);
+  padding: 1rem;
+  border-radius: 1rem;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  color: #1a1a1a;
+}
+
+
+html, body {
+  overflow-x: hidden;
+}
+
 .bloque {
     min-height: 100vh;
     /* cada bloque ocupa pantalla completa */
@@ -302,6 +315,7 @@ ul li {
     justify-content: center;
     align-items: center;
     font-size: 2rem;
+    overflow-x: hidden;
 }
 
 /* Aplicación de degradados */
